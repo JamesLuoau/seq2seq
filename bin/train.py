@@ -52,20 +52,45 @@ tf.flags.DEFINE_string("hooks", "[]",
 tf.flags.DEFINE_string("metrics", "[]",
                        """YAML configuration string for the
                        training metrics to use.""")
-tf.flags.DEFINE_string("model", "",
-                       """Name of the model class.
-                       Can be either a fully-qualified name, or the name
-                       of a class defined in `seq2seq.models`.""")
-tf.flags.DEFINE_string("model_params", "{}",
-                       """YAML configuration string for the model
-                       parameters.""")
+tf.flags.DEFINE_string(
+    "model",
+    "",
+    """Name of the model class.
+    Can be either a fully-qualified name, or the name
+    of a class defined in `seq2seq.models`.""")
+tf.flags.DEFINE_string(
+    "model_params",
+    """
+    vocab_source: /Users/james/nmt_data/toy_reverse/train/vocab.sources.txt
+    vocab_target: /Users/james/nmt_data/toy_reverse/train/vocab.targets.txt
+    """,
+    """YAML configuration string for the model
+    parameters.""")
 
-tf.flags.DEFINE_string("input_pipeline_train", "{}",
-                       """YAML configuration string for the training
-                       data input pipeline.""")
-tf.flags.DEFINE_string("input_pipeline_dev", "{}",
-                       """YAML configuration string for the development
-                       data input pipeline.""")
+tf.flags.DEFINE_string(
+    "input_pipeline_train",
+    """
+    class: ParallelTextInputPipeline
+    params:
+      source_files:
+        - /Users/james/nmt_data/toy_reverse/train/sources.txt
+      target_files:
+        - /Users/james/nmt_data/toy_reverse/train/targets.txt"
+    """,
+    """YAML configuration string for the training
+    data input pipeline.""")
+tf.flags.DEFINE_string(
+    "input_pipeline_dev",
+    """
+    class: ParallelTextInputPipeline
+    params:
+       source_files:
+        - /Users/james/nmt_data/toy_reverse/dev/sources.txt
+       target_files:
+        - /Users/james/nmt_data/toy_reverse/dev/targets.txt
+    """,
+    """YAML configuration string for the development
+    data input pipeline.""")
 
 tf.flags.DEFINE_string("buckets", None,
                        """Buckets input sequences according to these length.
