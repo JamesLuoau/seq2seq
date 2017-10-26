@@ -75,7 +75,7 @@ tf.flags.DEFINE_string(
       source_files:
         - /Users/james/git/seq2seq/data/toy_reverse/train/sources.txt
       target_files:
-        - /Users/james/git/seq2seq/data/toy_reverse/train/targets.txt"
+        - /Users/james/git/seq2seq/data/toy_reverse/train/targets.txt
     """,
     """YAML configuration string for the training
     data input pipeline.""")
